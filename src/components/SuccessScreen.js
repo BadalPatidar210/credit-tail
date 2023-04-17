@@ -27,7 +27,7 @@ export default function SuccessScreen({route,navigation}){
         </View>
         <View style={styles.border}></View>
         
-        <Text style={styles.paymentStatus}>{`PAID BY ${route.params.paymentMode.toUpperCase()}`}</Text>
+        <Text style={styles.paymentStatus}>{`PAID BY ${route.params.paymentMode?.toUpperCase()}`}</Text>
         <Text style={styles.footer}>{"Redirect to home screen..."}</Text>
       </View>
     );
@@ -47,9 +47,15 @@ const styles = StyleSheet.create({
       fontSize:20,
     },
     successIcon:{
-      background: "rgba(255, 255, 255, 0.25)",
+      backgroundColor: "rgba(255, 255, 255, 0.25)",
       border: 10,
-      marginBottom:20
+      marginBottom:20,
+        width:100,
+        height:100,
+
+      borderRadius:100,
+      justifyContent:'center',
+      alignItems:'center'
     },  
     rupee :{
       fontSize:40, 
@@ -88,4 +94,3 @@ const styles = StyleSheet.create({
       bottom: 0
     }
 });
-  

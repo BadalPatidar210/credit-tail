@@ -29,7 +29,7 @@ export default function EditAmountScreen({ route, navigation }) {
       const params = {
         customerId: route.params.customerId,
         paidAmount: amount,
-        paymentMode: paymentMode.toUpperCase()
+        paymentMode: paymentMode?.toUpperCase()
       }
       const confirmation = await confirmDistributorPayment(params);
       navigation.navigate("SuccessScreen",{...confirmation,paymentMode: paymentMode});
@@ -46,8 +46,8 @@ export default function EditAmountScreen({ route, navigation }) {
       <Appbar.Header statusBarHeight={0}>
       <Appbar.BackAction onPress={goBack} />
         <View>
-            <Appbar.Content title={route?.params?.customerId} />
-            <Appbar.Content title={route?.params?.customerName} />
+            <Appbar.Content titleStyle={{fontWeight:'600'}} title={route?.params?.customerId} />
+            <Appbar.Content titleStyle={{fontWeight:'600'}} title={route?.params?.customerName} />
         </View>
       </Appbar.Header>
 
@@ -82,9 +82,9 @@ export default function EditAmountScreen({ route, navigation }) {
         </Pressable>
       </View>
 
-      <View style={(amount && paymentMode) ? styles.activeButton : styles.footer}>
-        <Button disabled={!(amount && paymentMode)} onPress={confirmPayment} title={"Confirm"} color={(amount && paymentMode) ? 'white':'black'}/>
-      </View>
+      <Pressable style={(amount && paymentMode) ? styles.activeButton : styles.footer} onPress={confirmPayment} >
+        <Text style={{color:(amount && paymentMode)?'white':undefined,fontWeight:'bold'}}>Confirm</Text>
+      </Pressable>
       <Snackbar 
         visible={showSnackbar} 
         onDismiss={()=>setShowSnackbar(false)}
@@ -120,12 +120,12 @@ const styles = StyleSheet.create({
     position:'absolute',
     top:68,
     fontSize:30,
-    left:30
+    left:35,
 
   },  
   input: {
     height: 60,
-    paddingLeft: 20,
+    paddingLeft: 30,
     borderWidth: 1,
     borderRadius: 10,
     color: "white",

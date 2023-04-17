@@ -13,7 +13,7 @@ const Item = ({item,navigation}) => (
       <View style={styles.card}>
         <View>
             <Text style={styles.title}>{item.customerId}</Text>
-            <Text style={styles.name}>{item.customerName.toUpperCase()}</Text>
+            <Text style={styles.name}>{item?.customerName?.toUpperCase()}</Text>
         </View>
         <View>
             <Text style={styles.amount}>{`${"\u20B9"}${item.totalAmount}`}</Text>
