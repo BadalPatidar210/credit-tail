@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "./api.constant";
-import { CUSTOMERS_LIST } from "./api.endpoints";
+import { CUSTOMERS_LIST, GET_CUSTOMER, PAY_CUSTOMER } from "./api.endpoints";
 
 export const getCustomersList = async (params) => {
     return new Promise(async (resolve, reject) => {
@@ -9,7 +9,6 @@ export const getCustomersList = async (params) => {
           params: params,
         })
           .then((res) => {
-            console.log("response",res.data)
             res.data && resolve(res.data);
           })
           .catch((error) => {
@@ -32,12 +31,12 @@ export const getCustomer = (params) => {
     });
 }
 
-export const confirmPayment = (params) => {
+export const confirmDistributorPayment = async (params) => {
     return new Promise(async (resolve, reject) => {
         const url = BASE_URL + PAY_CUSTOMER;
         axios.post(url, params)
           .then((res) => {
-            res && resolve(res);
+            res && resolve(res.data);
           })
           .catch((error) => {
             error && resolve(error.response);

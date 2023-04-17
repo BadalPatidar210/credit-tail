@@ -2,11 +2,6 @@ import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function SuccessScreen({route,navigation}){
-    const [details,setDetails] = React.useState({
-      customerId:'MD22/1107651',
-      customerName:'AGRAWAL BROTHERS AND SONS ',
-      paidAmount:500,
-    });
 
     useEffect(()=>{
       const timer = setTimeout(()=>{
@@ -16,18 +11,22 @@ export default function SuccessScreen({route,navigation}){
         clearTimeout(timer);
       }
     },[])
+
     return (
       <View style={styles.container}>
+        <View>
+          
+        </View>
         <View style={styles.details}>
-          <Text style={styles.customer}>{details.customerId}</Text>
+          <Text style={styles.customer}>{route.params.data.customerId}</Text>
           <Text style={styles.rupee}>{"\u20B9"}
-          <Text style={styles.paidAmount}>{details.paidAmount}</Text>
+          <Text style={styles.paidAmount}>{route.params.data.paidAmount}</Text>
           </Text>  
-          <Text style={styles.customer}>{details.customerName}</Text>
+          <Text style={styles.customer}>{route.params.data.customerName}</Text>
         </View>
         <View style={styles.border}></View>
         
-        <Text style={styles.paymentStatus}>{`PAID BY CASH`}</Text>
+        <Text style={styles.paymentStatus}>{`PAID BY ${route.params.paymentMode.toUpperCase()}`}</Text>
         <Text style={styles.footer}>{"Redirect to home screen..."}</Text>
       </View>
     );

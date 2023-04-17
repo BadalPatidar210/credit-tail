@@ -13,7 +13,7 @@ const Item = ({item,navigation}) => (
       <View style={styles.card}>
         <View>
             <Text style={styles.title}>{item.customerId}</Text>
-            <Text style={styles.name}>{item.customerName}</Text>
+            <Text style={styles.name}>{item.customerName.toUpperCase()}</Text>
         </View>
         <View>
             <Text style={styles.amount}>{`${"\u20B9"}${item.totalAmount}`}</Text>
@@ -31,7 +31,7 @@ export default function InvoiceScreen({navigation}) {
     if(!isFocused) return;
     const getList = async ()=>{
       const params = {
-        salesRepresentativeId: "SP-1002"
+        salesRepresentativeId: "SPR1001"
       }
       const customersList = await getCustomersList(params);
       setCustomersList(customersList.data);
@@ -76,10 +76,11 @@ const styles = StyleSheet.create({
     padding:15
   },
   title: {
-    fontSize: 32,
+    fontSize: 24,
     color:'black',
   },
   amount:{
-    fontSize:24
+    fontSize:28,
+    fontWeight:700
   }
 });

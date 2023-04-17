@@ -7,15 +7,15 @@ import {
   View
 } from "react-native";
 import { Appbar, Snackbar } from "react-native-paper";
+import { confirmDistributorPayment } from '../Network';
 
 export default function EditAmountScreen({ route, navigation }) {
-  console.log(route.params);
   const [amount, setAmount] = React.useState(route?.params?.totalAmount.toString());
   const [showSnackbar,setShowSnackbar] = React.useState(false);
   const [error,setError] = React.useState('');
   const [paymentMode,setPaymentMode] = React.useState('');
 
-  const confirmPayment = () => {
+  const confirmPayment = async () => {
     if(!(amount && paymentMode)){
       return;
     }
@@ -24,9 +24,16 @@ export default function EditAmountScreen({ route, navigation }) {
       setShowSnackbar(true);
       return;
     }
-    
-    //API Call
-    navigation.navigate("SuccessScreen");
+
+    if(amount && paymentMode){
+      const params = {
+        customerId: route.params.customerId,
+        paidAmount: amount,
+        paymentMode: paymentMode.toUpperCase()
+      }
+      const confirmation = await confirmDistributorPayment(params);
+      navigation.navigate("SuccessScreen",{...confirmation,paymentMode: paymentMode});
+    }   
   };
 
   const goBack  = () => {
