@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button, Pressable, SafeAreaView,
   StyleSheet,
@@ -53,15 +53,17 @@ export default function EditAmountScreen({ route, navigation }) {
 
       <View style={styles.inputText}>
         <Text style={styles.text}>{"Amount"}</Text>
+        {/* <Text }>{"\u20B9"}</Text> */}
 
         <TextInput
           style={styles.input}
-          value={amount}
+          value={amount.toString()}
           onChangeText={setAmount}
           placeholder={"Enter Amount"}
           keyboardType={"numeric"}
-          placeholderTextColor={"gray"}
+          placeholderTextColor={"gray"} 
         />
+        <Text style={styles.rupeeSymbol}>{"\u20B9"}</Text>
       </View>
 
       <View>
@@ -106,12 +108,21 @@ const styles = StyleSheet.create({
   },
   inputText: {
     height: "30%",
-    paddingTop: "10%",
+    paddingTop: 30,
     paddingLeft: 25,
     paddingRight: 25,
     backgroundColor: "#2A2D31",
     borderRadius: 10,
+    position:'relative',
   },
+  rupeeSymbol:{
+    color:'white',
+    position:'absolute',
+    top:68,
+    fontSize:30,
+    left:30
+
+  },  
   input: {
     height: 60,
     paddingLeft: 20,

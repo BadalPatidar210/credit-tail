@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function SuccessScreen({route,navigation}){
 
@@ -14,13 +15,13 @@ export default function SuccessScreen({route,navigation}){
 
     return (
       <View style={styles.container}>
-        <View>
-          
+        <View style={styles.successIcon}>
+          <Icon name="check-circle" size={80} color="#FFFFFF" />
         </View>
         <View style={styles.details}>
           <Text style={styles.customer}>{route.params.data.customerId}</Text>
           <Text style={styles.rupee}>{"\u20B9"}
-          <Text style={styles.paidAmount}>{route.params.data.paidAmount}</Text>
+                <Text style={styles.paidAmount}>{route.params.data.paidAmount}</Text>
           </Text>  
           <Text style={styles.customer}>{route.params.data.customerName}</Text>
         </View>
@@ -45,6 +46,11 @@ const styles = StyleSheet.create({
       marginBottom:10,   
       fontSize:20,
     },
+    successIcon:{
+      background: "rgba(255, 255, 255, 0.25)",
+      border: 10,
+      marginBottom:20
+    },  
     rupee :{
       fontSize:40, 
       color:'white' , 
